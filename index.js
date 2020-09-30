@@ -21,6 +21,18 @@ mongoose
   })
   .then(() => {
     // Run your code here, after you have insured that the connection was made
+    // Recipe.create({
+    //   title: 'Eggs',
+    //   level: 'Easy Peasy',
+    //   ingredients: ['3 Eggs', 'Some butter'],
+    //   cuisine: 'Global',
+    //   dishType: 'breakfast',
+    //   duration: 5,
+    //   creator: 'Sebastian Grana',
+    // }).then(result => console.log(result));
+    Recipe
+      .insertMany(data)
+      .then(res => Recipe.findOneAndUpdate({'name': 'Rigatoni alla Genovese'}, {$set:{'duration': 100}}, {new: true, useFindAndModify: false}, (err, doc) => {console.log(err, doc)}));
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
